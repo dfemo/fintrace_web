@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --color-brand-950: #0a1628;
+  --color-brand-900: #0f2744;
+  --color-brand-800: #163a5f;
+  --color-brand-700: #1e4d7a;
+  --color-accent-500: #14b8a6;
+  --color-accent-400: #2dd4bf;
+  --color-accent-300: #5eead4;
+  --color-warm-400: #fbbf24;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-brand-950 text-slate-100 antialiased font-sans;
+}
