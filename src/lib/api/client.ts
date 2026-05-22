@@ -19,11 +19,30 @@ async function postJson<T>(path: string, body: unknown): Promise<T> {
     body: JSON.stringify(body),
   })
 
-  const data = (await response.json()) as T
+  const text = await response.text()
+
+  if (!text.trim()) {
+    throw new Error(
+      response.ok
+        ? 'Empty response from server.'
+        : `Request failed (${response.status}). Check FINTRACE_API_URL on Vercel points to your Railway API.`,
+    )
+  }
+
+  let data: T
+  try {
+    data = JSON.parse(text) as T
+  } catch {
+    throw new Error(
+      `Invalid response from server (${response.status}). Ensure the API is running and FINTRACE_API_URL is set.`,
+    )
+  }
+
   if (!response.ok) {
     const err = data as ApiResult
-    throw new Error(err.message ?? 'Something went wrong. Please try again.')
+    throw new Error(err.message ?? `Request failed (${response.status}).`)
   }
+
   return data
 }
 
