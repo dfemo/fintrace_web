@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from 'react'
 import { joinWaitlist } from '@/lib/api/client'
+import { DEFAULT_COUNTRY_CODE } from '@/lib/countries'
+import { CountrySelect } from './CountrySelect'
 
 type Props = {
   open: boolean
@@ -11,6 +13,7 @@ type Props = {
 export function NotifyModal({ open, onClose }: Props) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [countryCode, setCountryCode] = useState(DEFAULT_COUNTRY_CODE)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
 
@@ -21,11 +24,17 @@ export function NotifyModal({ open, onClose }: Props) {
     setStatus('loading')
     setMessage('')
     try {
-      const result = await joinWaitlist({ email, name: name || undefined, source: 'notify-modal' })
+      const result = await joinWaitlist({
+        email,
+        name: name || undefined,
+        countryCode,
+        source: 'notify-modal',
+      })
       setStatus('success')
       setMessage(result.message)
       setEmail('')
       setName('')
+      setCountryCode(DEFAULT_COUNTRY_CODE)
     } catch (err) {
       setStatus('error')
       setMessage(err instanceof Error ? err.message : 'Unable to subscribe right now.')
@@ -76,6 +85,7 @@ export function NotifyModal({ open, onClose }: Props) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <CountrySelect value={countryCode} onChange={setCountryCode} />
             <label className="block">
               <span className="text-sm font-medium text-slate-300">Email address</span>
               <input

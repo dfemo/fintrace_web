@@ -2,6 +2,7 @@ export type WaitlistPayload = {
   email: string
   name?: string
   source?: string
+  countryCode?: string
 }
 
 export type ContactPayload = {
@@ -51,6 +52,7 @@ export function joinWaitlist(payload: WaitlistPayload) {
     email: payload.email,
     name: payload.name,
     source: payload.source ?? 'landing',
+    countryCode: payload.countryCode ?? 'GB',
   })
 }
 
