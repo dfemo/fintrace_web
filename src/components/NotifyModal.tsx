@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from 'react'
 import { joinWaitlist } from '@/lib/api/client'
 import { DEFAULT_COUNTRY_CODE } from '@/lib/countries'
-import { CountrySelect } from './CountrySelect'
+import { WaitlistFormFields } from './WaitlistFormFields'
 
 type Props = {
   open: boolean
@@ -85,30 +85,16 @@ export function NotifyModal({ open, onClose }: Props) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-            <CountrySelect value={countryCode} onChange={setCountryCode} />
-            <label className="block">
-              <span className="text-sm font-medium text-slate-300">Email address</span>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@yourshop.co.uk"
-                className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 outline-none ring-accent-500/50 focus:border-accent-500/50 focus:ring-2"
-              />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium text-slate-300">
-                Name <span className="font-normal text-slate-500">(optional)</span>
-              </span>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
-                className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 outline-none ring-accent-500/50 focus:border-accent-500/50 focus:ring-2"
-              />
-            </label>
+            <WaitlistFormFields
+              idPrefix="notify-modal"
+              countryCode={countryCode}
+              onCountryChange={setCountryCode}
+              email={email}
+              onEmailChange={setEmail}
+              name={name}
+              onNameChange={setName}
+              emailPlaceholder="you@yourshop.co.uk"
+            />
             {status === 'error' && (
               <p className="text-sm text-red-400" role="alert">
                 {message}
