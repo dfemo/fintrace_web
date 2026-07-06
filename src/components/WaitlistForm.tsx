@@ -42,12 +42,12 @@ export function WaitlistForm({ source = 'hero', compact = false }: Props) {
   if (status === 'success') {
     return (
       <div
-        className={`rounded-xl border border-accent-500/30 bg-accent-500/10 text-center ${
+        className={`rounded-xl border border-success/30 bg-success-bg text-center ${
           compact ? 'px-4 py-3' : 'px-6 py-5'
         }`}
       >
-        <p className="font-medium text-accent-300">You&apos;re on the early bird list</p>
-        <p className="mt-1 text-sm text-slate-300">{message}</p>
+        <p className="font-medium text-success">You&apos;re on the early bird list</p>
+        <p className="mt-1 text-sm text-ink-muted">{message}</p>
       </div>
     )
   }
@@ -67,14 +67,14 @@ export function WaitlistForm({ source = 'hero', compact = false }: Props) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className={`rounded-xl bg-accent-500 font-semibold text-brand-950 transition hover:bg-accent-400 disabled:opacity-60 ${
+        className={`rounded-full bg-primary font-semibold text-white transition hover:bg-primary-hover disabled:opacity-60 ${
           compact ? 'w-full px-5 py-3 text-sm sm:w-auto' : 'w-full px-6 py-3.5 sm:w-auto'
         }`}
       >
         {status === 'loading' ? 'Joining…' : 'Notify me at launch'}
       </button>
       {status === 'error' && (
-        <p className="text-sm text-red-400" role="alert">
+        <p className="text-sm text-red-600" role="alert">
           {message}
         </p>
       )}

@@ -2,8 +2,8 @@
 
 import { CountrySelect } from './CountrySelect'
 
-const inputClass =
-  'w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 outline-none ring-accent-500/50 focus:border-accent-500/50 focus:ring-2'
+export const inputClass =
+  'w-full rounded-xl border border-border bg-surface px-4 py-3 text-ink placeholder:text-ink-subtle outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20'
 
 type Props = {
   countryCode: string
@@ -37,7 +37,7 @@ export function WaitlistFormFields({
         onChange={onCountryChange}
       />
       <label className="block">
-        <span className="text-sm font-medium text-slate-300">Email address</span>
+        <span className="text-sm font-medium text-ink">Email address</span>
         <input
           id={`${idPrefix}-email`}
           type="email"
@@ -49,8 +49,8 @@ export function WaitlistFormFields({
         />
       </label>
       <label className="block">
-        <span className="text-sm font-medium text-slate-300">
-          Name <span className="font-normal text-slate-500">(optional)</span>
+        <span className="text-sm font-medium text-ink">
+          Name <span className="font-normal text-ink-subtle">(optional)</span>
         </span>
         <input
           id={`${idPrefix}-name`}

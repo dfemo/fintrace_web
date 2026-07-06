@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react'
 import { sendContact } from '@/lib/api/client'
+import { inputClass } from './WaitlistFormFields'
 
 export function ContactForm() {
   const [name, setName] = useState('')
@@ -28,40 +29,40 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-white/10 bg-brand-900/40 p-6">
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-border bg-surface p-6 shadow-sm">
       <label className="block">
-        <span className="text-sm font-medium text-slate-300">Name</span>
+        <span className="text-sm font-medium text-ink">Name</span>
         <input
           type="text"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/30"
+          className={`mt-1.5 ${inputClass}`}
         />
       </label>
       <label className="block">
-        <span className="text-sm font-medium text-slate-300">Email</span>
+        <span className="text-sm font-medium text-ink">Email</span>
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/30"
+          className={`mt-1.5 ${inputClass}`}
         />
       </label>
       <label className="block">
-        <span className="text-sm font-medium text-slate-300">Message</span>
+        <span className="text-sm font-medium text-ink">Message</span>
         <textarea
           required
           rows={5}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/30"
+          className={`mt-1.5 resize-none ${inputClass}`}
         />
       </label>
       {feedback && (
         <p
-          className={`text-sm ${status === 'success' ? 'text-accent-300' : 'text-red-400'}`}
+          className={`text-sm ${status === 'success' ? 'text-success' : 'text-red-600'}`}
           role="status"
         >
           {feedback}
@@ -70,7 +71,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full rounded-xl bg-accent-500 py-3 font-semibold text-brand-950 transition hover:bg-accent-400 disabled:opacity-60"
+        className="w-full rounded-full bg-primary py-3 font-semibold text-white transition hover:bg-primary-hover disabled:opacity-60"
       >
         {status === 'loading' ? 'Sending…' : 'Send message'}
       </button>

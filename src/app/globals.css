@@ -2,21 +2,38 @@
 
 @theme {
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --color-brand-950: #0a1628;
-  --color-brand-900: #0f2744;
-  --color-brand-800: #163a5f;
-  --color-brand-700: #1e4d7a;
-  --color-accent-500: #14b8a6;
-  --color-accent-400: #2dd4bf;
-  --color-accent-300: #5eead4;
-  --color-warm-400: #fbbf24;
+  --color-ink: #111111;
+  --color-ink-muted: #5c5c6d;
+  --color-ink-subtle: #8b8b9a;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f6f6f8;
+  --color-surface-dark: #0f0f12;
+  --color-border: #e8e8ed;
+  --color-primary: #5c3ee8;
+  --color-primary-hover: #4a32c4;
+  --color-primary-light: #ede9fe;
+  --color-success: #059669;
+  --color-success-bg: #ecfdf5;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  @apply bg-brand-950 text-slate-100 antialiased font-sans;
+  @apply bg-surface text-ink antialiased font-sans;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 35s linear infinite;
 }

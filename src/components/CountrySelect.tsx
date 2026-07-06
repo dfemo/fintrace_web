@@ -1,6 +1,7 @@
 'use client'
 
 import { DEFAULT_COUNTRY_CODE, WAITLIST_COUNTRIES } from '@/lib/countries'
+import { inputClass } from './WaitlistFormFields'
 
 type Props = {
   value: string
@@ -23,17 +24,17 @@ export function CountrySelect({
 }: Props) {
   return (
     <label className={`block ${className}`}>
-      <span className="text-sm font-medium text-slate-300">{label}</span>
+      <span className="text-sm font-medium text-ink">{label}</span>
       <div className="relative mt-1.5">
         <select
           id={id}
           required={required}
           value={value || DEFAULT_COUNTRY_CODE}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full appearance-none rounded-xl border border-white/10 bg-white/5 py-3 pl-4 pr-10 text-white outline-none ring-accent-500/50 focus:border-accent-500/50 focus:ring-2 ${selectClassName}`}
+          className={`${inputClass} appearance-none pr-10 ${selectClassName}`}
         >
           {WAITLIST_COUNTRIES.map((c) => (
-            <option key={c.code} value={c.code} className="bg-brand-900 text-white">
+            <option key={c.code} value={c.code}>
               {c.flag} {c.name}
             </option>
           ))}
